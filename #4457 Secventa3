@@ -1,0 +1,47 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+ifstream fin("secventa3.in");
+ofstream fout("secventa3.out");
+
+
+int long long x[100001],j,n,i;
+
+int main()
+{ 
+    fin>>n;
+    for(i=1;i<=n;i++)
+    {
+        fin>>x[i];
+    }
+    
+    int dmax=0,smax=1;
+    for(i=1;i<=n;i++)
+    {
+        int nr1=x[i]%2;
+        int nr2=x[i + 1]%2;
+     if(nr1!=nr2)
+     {
+         int j=i;
+        
+         while(j<n && nr1!=nr2)
+         { 
+             j++;
+             nr1=x[j]%2;
+             nr2=x[j + 1]%2;
+             
+         }
+         if(j-i+1>=dmax-smax+1)
+         {
+            dmax=j;
+            smax=i;
+         }
+     }
+        
+    }
+    fout<<smax<<" "<<dmax;
+    
+    return 0;
+}
